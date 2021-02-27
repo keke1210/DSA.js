@@ -12,8 +12,30 @@ class BinaryTree {
     }
 
     // BFS (Bread First Search)
-    bfsPrint() {
-        const queue = [ root ];
+    bfs(target) {
+        const queue = [ this.root ];
+        while(queue.length > 0) {
+            const curr = queue.shift();
+            
+            if(curr.val === target) {
+                return true;
+            }
+
+            if(curr.left !== null) {
+                queue.push(curr.left);
+            }
+
+            if(curr.right !== null) {
+                queue.push(curr.right);
+            }
+        }
+
+        return false;
+    }
+
+
+    bfPrint() {
+        const queue = [ this.root ];
         while(queue.length > 0) {
             const curr = queue.shift();
 
@@ -27,9 +49,27 @@ class BinaryTree {
                 queue.push(curr.right);
             }
         }
-
-        return queue;
     }
+
+    sum() {
+        const queue = [ this.root ];
+        let sum = 0;
+        while(queue.length > 0) {
+            const curr = queue.shift();
+
+            sum += curr.val;
+
+            if(curr.left !== null) {
+                queue.push(curr.left);
+            }
+
+            if(curr.right !== null) {
+                queue.push(curr.right);
+            }
+        }
+
+        return sum;
+     }
 }
 
 const nodeA = new Node('a');
@@ -39,6 +79,12 @@ const nodeD = new Node('d');
 const nodeE = new Node('e');
 const nodeF = new Node('f');
 
+const root = nodeA;
+root.left = nodeB;
+root.right = nodeC;
+nodeB.left = nodeF;
+nodeF.right = nodeE;
+
 //          a
 //        /   \
 //      b       c 
@@ -47,12 +93,14 @@ const nodeF = new Node('f');
 //      \
 //        E
 
-const root = nodeA;
-root.left = nodeB;
-root.right = nodeC;
-
-nodeB.left = nodeF;
-nodeF.right = nodeE;
-
 const btree = new BinaryTree(root);
-btree.bfsPrint();
+btree.bfPrint();
+console.log(btree.bfs('e'));
+
+
+const numericRoot = new Node(1);
+numericRoot.left = new Node(25); 
+numericRoot.right = new Node(3); 
+
+const numericBTree =new BinaryTree(numericRoot);
+console.log(numericBTree.sum());
