@@ -71,6 +71,17 @@ class LinkedList {
         this.head = prev;
     } // Time O(n), Space O(1)
 
+    sum() {
+        let sum = 0;
+        let curr = this.head;
+        while(curr !== null) {
+            sum += curr.val;
+            curr = curr.next;
+        }
+
+        return sum;
+    }
+
     print() {
         let resultStr = '';
         let curr = this.head;
@@ -114,4 +125,4 @@ listOfNumbers.append(1);
 listOfNumbers.append(2); 
 listOfNumbers.append(5); 
 
-console.log(sumList(listOfNumbers.head));
+console.log(listOfNumbers.sum());
