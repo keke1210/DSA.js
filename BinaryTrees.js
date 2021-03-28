@@ -31,7 +31,7 @@ class BinaryTree {
         }
 
         return false;
-    }
+    } // Time O(n), Space O(n)
 
 
     bfPrint() {
@@ -49,7 +49,7 @@ class BinaryTree {
                 queue.push(curr.right);
             }
         }
-    }
+    } // Time O(n), Space O(n)
 
     sum() {
         const queue = [ this.root ];
@@ -69,7 +69,7 @@ class BinaryTree {
         }
 
         return sum;
-     }
+     } // Time O(n), Space O(n)
 }
 
 const nodeA = new Node('a');
